@@ -1,63 +1,6 @@
-
-	<html>
+<html>
 	<head>
 <style type="text/css">
-.buttons {
-	position: relative;
-	margin: 0 auto 20px auto;
-	padding: 20px;
-	float: left;
-	display: block;
-	background-color: #eee;
-	border-radius: 4px;
-}
-.buttons:after {
-	top: 100%;
-	left: 50%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-	border-color: rgba(238, 238, 238, 0);
-	border-top-color: #eee;
-	border-width: 10px;
-	margin-left: -10px;
-}
-.button {
-	padding: 10px 20px;
-	font-weight: bold;
-	letter-spacing: 5px;
-	outline: none;
-	cursor: pointer;
-	color: white;
-	background-color: #7F8C8D;
-	border: none;
-	border-radius: 4px;
-}
-#play-button {
-	background-color: #2ECC71;
-}
-#play-button:hover {
-	background-color: #27AE60;
-}
-#pause-button {
-	background-color: #E67E22;
-}
-#pause-button:hover {
-	background-color: #D35400;
-}
-#stop-button {
-	background-color: #E74C3C;
-}
-#stop-button:hover {
-	background-color: #C0392B;
-}
-#pause-button,
-#stop-button {
-	margin-left: 15px;
-}
 .morevi{
      z-index:1;
      width:40%;
@@ -115,52 +58,66 @@ iframe{width:95vw;height:40vh;}
 </iframe>
 
 </div>
-<div class="buttons">
-		<button class="button" id="play-button">PLAY</button>
-		<button class="button" id="pause-button">PAUSE</button>
-		<button class="button" id="stop-button">STOP</button>
-	</div>
-	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script><script  src="./script.js"></script>
-	<script type="text/javascript">
-// global variable for the player
-var player;
-
-// this function gets called when API is ready to use
-function onYouTubePlayerAPIReady() {
-    // create the global player from the specific iframe (#video)
-    player = new YT.Player('video', {
-        events: {
-            // call this function when player is ready to use
-            'onReady': onPlayerReady
-        }
-    });
-}
-
-function onPlayerReady(event) {
-
-    // bind events
-    var playButton = document.getElementById("play-button");
-    playButton.addEventListener("click", function() {
-        player.playVideo();
-    });
-
-    var pauseButton = document.getElementById("pause-button");
-    pauseButton.addEventListener("click", function() {
-        player.pauseVideo();
-    });
-
-    var stopButton = document.getElementById("stop-button");
-    stopButton.addEventListener("click", function() {
-        player.stopVideo();
-    });
-
-}
-
-// Inject YouTube API script
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/player_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-	</script>
 	</body>
-	</html>
+</html><html>
+	<head>
+<style type="text/css">
+.morevi{
+     z-index:1;
+     width:40%;
+      height:20vh; 
+      top:26%; 
+      position: absolute; 
+      background-color:blue;
+}
+.morevi2{
+     z-index:1;
+     width:40%;
+      height:20vh; 
+      top:26%; 
+      right:0;
+      position: absolute; 
+      background-color:blue;
+}
+.morevi3{
+     z-index:1;
+     width:40%;
+      height:8vh; 
+      top:56%;
+      right:30vw; 
+      position: absolute; 
+      background-color:blue;
+}
+.screenf{
+     z-index:1;
+     width:28%;
+      height:6vh; 
+      right:0%; 
+      bottom:10%;
+      position: absolute; 
+      background-color:yellow;
+}
+.share{
+     z-index:1;
+     width:95vw; 
+     height:9vh; 
+     right:0;position: absolute; 
+     background-color:red;
+}
+iframe{width:95vw;height:40vh;}
+</style>
+	</head>
+	<body>
+<div style="width:95vw; height:40vh; position: relative;">
+<div class="share"></div>
+<div class="screenf"></div>
+<div class="morevi"></div>
+<div class="morevi2"></div>
+<div class="morevi3"></div>
+<iframe id="video" src="https://www.youtube.com/embed/JpcOmg9Ik_k?enablejsapi=1" style="z-index:2;"frameborder="0" allowfullscreen>
+
+</iframe>
+
+</div>
+	</body>
+</html>
