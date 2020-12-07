@@ -1,119 +1,121 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-div#video_player_box{ width:550px; background:#000; margin:0px auto;}
-div#video_controls_bar{ background: #333; padding:10px; color:#CCC; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
-button#playpausebtn{
-	background:url(pause.png);
-	border:none;
-	width:16px;
-	height:18px;
-	cursor:pointer;
-	opacity:0.5;
+	<html>
+	<head>
+<style type="text/css">
+.buttons {
+	position: relative;
+	margin: 0 auto 20px auto;
+	padding: 20px;
+	float: left;
+	display: block;
+	background-color: #eee;
+	border-radius: 4px;
 }
-button#playpausebtn:hover{ opacity:1; }
-input#seekslider{ width:180px; }
-input#volumeslider{ width: 80px;}
-input[type='range'] {
-    -webkit-appearance: none !important;
-    background: #000;
-	border:#666 1px solid;
-    height:4px;
+.buttons:after {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(238, 238, 238, 0);
+	border-top-color: #eee;
+	border-width: 10px;
+	margin-left: -10px;
 }
-input[type='range']::-webkit-slider-thumb {
-    -webkit-appearance: none !important;
-    background: #FFF;
-    height:15px;
-    width:15px;
-	border-radius:100%;
-	cursor:pointer;
+.button {
+	padding: 10px 20px;
+	font-weight: bold;
+	letter-spacing: 5px;
+	outline: none;
+	cursor: pointer;
+	color: white;
+	background-color: #7F8C8D;
+	border: none;
+	border-radius: 4px;
 }
+#play-button {
+	background-color: #2ECC71;
+}
+#play-button:hover {
+	background-color: #27AE60;
+}
+#pause-button {
+	background-color: #E67E22;
+}
+#pause-button:hover {
+	background-color: #D35400;
+}
+#stop-button {
+	background-color: #E74C3C;
+}
+#stop-button:hover {
+	background-color: #C0392B;
+}
+#pause-button,
+#stop-button {
+	margin-left: 15px;
+}
+
 </style>
-<script>
-var vid, playbtn, seekslider, curtimetext, durtimetext, mutebtn, volumeslider, fullscreenbtn;
-function intializePlayer(){
-	// Set object references
-	vid = document.getElementById("my_video");
-	playbtn = document.getElementById("playpausebtn");
-	seekslider = document.getElementById("seekslider");
-	curtimetext = document.getElementById("curtimetext");
-	durtimetext = document.getElementById("durtimetext");
-	mutebtn = document.getElementById("mutebtn");
-	volumeslider = document.getElementById("volumeslider");
-	fullscreenbtn = document.getElementById("fullscreenbtn");
-	// Add event listeners
-	playbtn.addEventListener("click",playPause,false);
-	seekslider.addEventListener("change",vidSeek,false);
-	vid.addEventListener("timeupdate",seektimeupdate,false);
-	mutebtn.addEventListener("click",vidmute,false);
-	volumeslider.addEventListener("change",setvolume,false);
-	fullscreenbtn.addEventListener("click",toggleFullScreen,false);
-}
-window.onload = intializePlayer;
-function playPause(){
-	if(vid.paused){
-		vid.play();
-		playbtn.style.background = "url(pause.png)";
-	} else {
-		vid.pause();
-		playbtn.style.background = "url(play.png)";
-	}
-}
-function vidSeek(){
-	var seekto = vid.duration * (seekslider.value / 100);
-	vid.currentTime = seekto;
-}
-function seektimeupdate(){
-	var nt = vid.currentTime * (100 / vid.duration);
-	seekslider.value = nt;
-	var curmins = Math.floor(vid.currentTime / 60);
-	var cursecs = Math.floor(vid.currentTime - curmins * 60);
-	var durmins = Math.floor(vid.duration / 60);
-	var dursecs = Math.floor(vid.duration - durmins * 60);
-	if(cursecs < 10){ cursecs = "0"+cursecs; }
-	if(dursecs < 10){ dursecs = "0"+dursecs; }
-	if(curmins < 10){ curmins = "0"+curmins; }
-	if(durmins < 10){ durmins = "0"+durmins; }
-	curtimetext.innerHTML = curmins+":"+cursecs;
-	durtimetext.innerHTML = durmins+":"+dursecs;
-}
-function vidmute(){
-	if(vid.muted){
-		vid.muted = false;
-		mutebtn.innerHTML = "Mute";
-	} else {
-		vid.muted = true;
-		mutebtn.innerHTML = "Unmute";
-	}
-}
-function setvolume(){
-	vid.volume = volumeslider.value / 100;
-}
-function toggleFullScreen(){
-	if(vid.requestFullScreen){
-		vid.requestFullScreen();
-	} else if(vid.webkitRequestFullScreen){
-		vid.webkitRequestFullScreen();
-	} else if(vid.mozRequestFullScreen){
-		vid.mozRequestFullScreen();
-	}
-}
-</script>
-</head>
-<body>
-<div id="video_player_box">
-  <video id="my_video" width="550" height="310" autoplay>
-    <source src="https://r3---sn-npoeenek.googlevideo.com/videoplayback?expire=1607273263&ei=z7bMX-DmHcOK2_gPrsKsoAk&ip=112.170.27.139&id=o-AH_4umrIfiRJXqeTc44sEq5WxJYW3XptPkfYtrxPM1TZ&itag=18&source=youtube&requiressl=yes&vprv=1&mime=video%2Fmp4&ns=cSWuQivl_7fDzX2JkkjPu9AF&gir=yes&clen=71582138&ratebypass=yes&dur=2406.121&lmt=1607225111801153&fvip=3&c=WEB&txp=7210222&n=ch-RIJdrc4TFTxORF&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRQIgVVVTN3sjkS9o6RslN80Fnt5KAHEdwnjEO7vhmq2m9WcCIQC3msoKxRdeHk8JhEV0d3_W67HO98Qmq7IONElQjxtNNg%3D%3D&rm=sn-3u-bh2sk7d&req_id=f6a32aaea955a3ee&redirect_counter=2&cm2rm=sn-i3b6y7s&cms_redirect=yes&mh=68&mip=27.60.102.221&mm=34&mn=sn-npoeenek&ms=ltu&mt=1607251017&mv=u&mvi=3&pl=19&lsparams=mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRAIgOCGNAr7MEWIthOEUq86PfMxDGq9RCwAz28SEY1WJZG0CICk2hmLB0Ox9QEfQ2vrJ2G4_zMRnWtaOMoNeUcv5or3w">
-  </video>
-  <div id="video_controls_bar">
-    <button id="playpausebtn"></button>
-    <input id="seekslider" type="range" min="0" max="100" value="0" step="1">
-    <span id="curtimetext">00:00</span> / <span id="durtimetext">00:00</span>
-    <button id="mutebtn">Mute</button>
-    <input id="volumeslider" type="range" min="0" max="100" value="100" step="1">
-    <button id="fullscreenbtn">[ &nbsp; ]</button>
-  </div>
+	</head>
+	<body>
+<div style="width:560; height:315; position: relative;">
+<div style="z-index:1;width:100px; height:70px; right:0;position: absolute; background-color:red;"></div>
+<div style="z-index:1;width:80%; height:170px; top:30%; position: absolute; background-color:blue;"></div>
+<iframe id="video" src="https://www.youtube.com/embed/JpcOmg9Ik_k?enablejsapi=1" style="z-index:2;" width="560" height="315" frameborder="0" allowfullscreen>
+
+</iframe>
+
 </div>
-</body>
-</html>
+<div class="buttons">
+		<button class="button" id="play-button">PLAY</button>
+		<button class="button" id="pause-button">PAUSE</button>
+		<button class="button" id="stop-button">STOP</button>
+	</div>
+	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script><script  src="./script.js"></script>
+	<script type="text/javascript">
+// global variable for the player
+var player;
+
+// this function gets called when API is ready to use
+function onYouTubePlayerAPIReady() {
+    // create the global player from the specific iframe (#video)
+    player = new YT.Player('video', {
+        events: {
+            // call this function when player is ready to use
+            'onReady': onPlayerReady
+        }
+    });
+}
+
+function onPlayerReady(event) {
+
+    // bind events
+    var playButton = document.getElementById("play-button");
+    playButton.addEventListener("click", function() {
+        player.playVideo();
+    });
+
+    var pauseButton = document.getElementById("pause-button");
+    pauseButton.addEventListener("click", function() {
+        player.pauseVideo();
+    });
+
+    var stopButton = document.getElementById("stop-button");
+    stopButton.addEventListener("click", function() {
+        player.stopVideo();
+    });
+
+}
+
+// Inject YouTube API script
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/player_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	</script>
+	</body>
+	</html>
+	
