@@ -1,1 +1,5 @@
-HfgococXocgpxtipxgodidixy
+@media screen and (min-width: 500px) {
+iframe{width:95vw;height:100vh;}
+.containiframe{width:95vw; height:100vh; position: relative;}
+}
+.containiframe{width:95vw; height:40vh; position: relative;}
